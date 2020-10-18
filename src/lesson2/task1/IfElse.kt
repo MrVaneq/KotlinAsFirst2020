@@ -4,6 +4,7 @@ package lesson2.task1
 
 import lesson1.task1.discriminant
 import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sqrt
 
 // Урок 2: ветвления (здесь), логический тип (см. 2.2).
@@ -68,7 +69,14 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int): String {
+    return if (age % 10 == 1 && age % 100 != 11) "$age год"
+    else {
+        if (age % 10 in 2..4 && age % 100 !in 12..14) "$age года"
+        else "$age лет"
+    }
+
+}
 
 /**
  * Простая (2 балла)
@@ -81,7 +89,14 @@ fun timeForHalfWay(
     t1: Double, v1: Double,
     t2: Double, v2: Double,
     t3: Double, v3: Double
-): Double = TODO()
+): Double {
+    val w = (t1 * v1 + t2 * v2 + t3 * v3) / 2
+    if (w <= t1 * v1) return (w / v1)
+    else {
+        if (w <= t1 * v1 + t2 * v2) return (t1 + (w - t1 * v1) / v2)
+        else return (t1 + t2 + (w - t1 * v1 - t2 * v2) / v3)
+    }
+}
 
 /**
  * Простая (2 балла)
@@ -96,7 +111,12 @@ fun whichRookThreatens(
     kingX: Int, kingY: Int,
     rookX1: Int, rookY1: Int,
     rookX2: Int, rookY2: Int
-): Int = TODO()
+): Int {
+    if ((kingX == rookX1) || (kingX == rookX2) && (kingY == rookY1) || (kingY == rookY2)) return 3
+    if ((kingX == rookX1) || (kingY == rookY1)) return 1
+    if ((kingX == rookX2) || (kingY == rookY2)) return 2
+    else return 0
+}
 
 /**
  * Простая (2 балла)
@@ -132,4 +152,7 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+    return if (b < c || d < a) -1
+    else min(b, d) - max(a, c)
+}
