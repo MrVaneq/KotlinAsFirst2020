@@ -72,7 +72,16 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+    var a = 0
+    var number = n
+    if (number < 10) return 1
+    else while (number >= 1) {
+        number /= 10
+        a += 1
+    }
+    return a
+}
 
 /**
  * Простая (2 балла)
@@ -87,14 +96,20 @@ fun fib(n: Int): Int = TODO()
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int {
+    var d = 2
+    while (n % d != 0) {
+        d += 1
+    }
+    return d
+}
 
 /**
  * Простая (2 балла)
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int = TODO()
+fun maxDivisor(n: Int): Int = n / minDivisor(n)
 
 /**
  * Простая (2 балла)
@@ -112,7 +127,20 @@ fun maxDivisor(n: Int): Int = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int = TODO()
+fun collatzSteps(x: Int): Int {
+    var step = 0
+    var n = x
+    while (n != 1) {
+        if (n % 2 == 0) {
+            n /= 2
+            step += 1
+        } else if (n % 2 != 0) {
+            n = 3 * n + 1
+            step += 1
+        }
+    }
+    return step
+}
 
 /**
  * Средняя (3 балла)
@@ -147,7 +175,15 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var number = n
+    var revertnum = 0
+    while (number > 0) {
+        revertnum = revertnum * 10 + (number % 10)
+        number /= 10
+    }
+    return revertnum
+}
 
 /**
  * Средняя (3 балла)
@@ -158,7 +194,7 @@ fun revert(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean = n == revert(n)
 
 /**
  * Средняя (3 балла)
@@ -196,12 +232,26 @@ fun cos(x: Double, eps: Double): Double = TODO()
  * Сложная (4 балла)
  *
  * Найти n-ю цифру последовательности из квадратов целых чисел:
- * 149162536496481100121144...
+ * 1 4 9 16 25 36 49 64 81 100 121 144...
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+    var number = 1
+    var dn = 0
+    var ln = 0
+    while (n > dn) {
+        ln = number * number
+        number += 1
+        dn += digitNumber(ln)
+    }
+    if (n != dn) {
+        ln /= 10
+        dn -= 1
+    }
+    return ln % 10
+}
 
 /**
  * Сложная (5 баллов)
