@@ -99,9 +99,8 @@ fun fib(n: Int): Int = TODO()
  */
 fun minDivisor(n: Int): Int {
     var d = 2
-    while (n % d != 0) {
-        d += 1
-    }
+    while (n % d != 0 && d < 100) d += 1
+    if (n % d != 0) d = n
     return d
 }
 
@@ -134,11 +133,10 @@ fun collatzSteps(x: Int): Int {
     while (n != 1) {
         if (n % 2 == 0) {
             n /= 2
-            step += 1
         } else if (n % 2 != 0) {
             n = 3 * n + 1
-            step += 1
         }
+        step += 1
     }
     return step
 }
