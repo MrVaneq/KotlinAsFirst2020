@@ -2,6 +2,8 @@
 
 package lesson6.task1
 
+import lesson2.task2.daysInMonth
+
 // Урок 6: разбор строк, исключения
 // Максимальное количество баллов = 13
 // Рекомендуемое количество баллов = 11
@@ -74,7 +76,31 @@ fun main() {
  * Обратите внимание: некорректная с точки зрения календаря дата (например, 30.02.2009) считается неверными
  * входными данными.
  */
-fun dateStrToDigit(str: String): String = TODO()
+val months = mapOf(
+    "января" to 1,
+    "Февраля" to 2,
+    "марта" to 3,
+    "апреля" to 4,
+    "мая" to 5,
+    "июня" to 6,
+    "июля" to 7,
+    "агуста" to 8,
+    "сентября" to 9,
+    "октября" to 10,
+    "ноября" to 11,
+    "декабря" to 12
+)
+
+fun dateStrToDigit(str: String): String {
+    val part = str.split(' ')
+    var result = ""
+    if (part.size == 3) {
+        if (part[0].toInt() <= daysInMonth(months[part[1]], part[2].toInt()) && months.containsKey(part[1])) {
+            result = String.format("%02d.%02d.%d", part[0].toInt(), months[part[1]], part[2].toInt())
+        }
+    }
+    return result
+}
 
 /**
  * Средняя (4 балла)
@@ -138,7 +164,20 @@ fun bestHighJump(jumps: String): Int = TODO()
  * Вернуть значение выражения (6 для примера).
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
-fun plusMinus(expression: String): Int = TODO()
+fun plusMinus(expression: String): Int {
+    val part = expression.split(" ")
+    var result = part[0].toInt()
+    require(expression.matches(Regex("""(([0-9]+\s[-+]\s)*)([0-9]+)""")))
+    for (i in 1 until part.size) {
+        if (part[i] == "+") {
+            result += part[i + 1].toInt()
+        }
+        if (part[i] == "-") {
+            result -= part[i + 1].toInt()
+        }
+    }
+    return result
+}
 
 /**
  * Сложная (6 баллов)
@@ -149,7 +188,15 @@ fun plusMinus(expression: String): Int = TODO()
  * Вернуть индекс начала первого повторяющегося слова, или -1, если повторов нет.
  * Пример: "Он пошёл в в школу" => результат 9 (индекс первого 'в')
  */
-fun firstDuplicateIndex(str: String): Int = TODO()
+fun firstDuplicateIndex(str: String): Int {
+    val part = str.toLowerCase().split(" ")
+    var result = 0
+    for (i in 0 until part.size - 1) {
+        if (part[i] == part[i + 1]) return result
+        else result += part[i].length + 1
+    }
+    return -1
+}
 
 /**
  * Сложная (6 баллов)
