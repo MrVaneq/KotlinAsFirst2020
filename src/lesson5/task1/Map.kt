@@ -118,6 +118,7 @@ fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
     for ((i, ii) in a) {
         if (ii == b[i]) return true
     }
+    if (a == b) return true
     return false
 }
 

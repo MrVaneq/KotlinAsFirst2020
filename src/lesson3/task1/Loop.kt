@@ -99,7 +99,7 @@ fun fib(n: Int): Int = TODO()
  */
 fun minDivisor(n: Int): Int {
     var d = 2
-    while (n % d != 0 && d < 100) d += 1
+    while (n % d != 0 && d < 1000) d += 1
     if (n % d != 0) d = n
     return d
 }
