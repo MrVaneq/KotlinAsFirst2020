@@ -76,8 +76,8 @@ fun digitCountInNumber(n: Int, m: Int): Int =
 fun digitNumber(n: Int): Int {
     var a = 0
     var number = abs(n)
-    if (number < 10) return 1
-    else while (number >= 1) {
+    if (number == 0) return 1
+    else while (number > 0) {
         number /= 10
         a += 1
     }
@@ -99,8 +99,8 @@ fun fib(n: Int): Int = TODO()
  */
 fun minDivisor(n: Int): Int {
     var d = 2
-    while (n % d != 0 && d < 1000) d += 1
-    if (n % d != 0) d = n
+    if (isPrime(n)) return n
+    else while (n % d != 0) d += 1
     return d
 }
 
