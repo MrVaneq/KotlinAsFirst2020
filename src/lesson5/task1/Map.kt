@@ -115,10 +115,10 @@ fun buildGrades(grades: Map<String, Int>): Map<Int, List<String>> {
  *   containsIn(mapOf("a" to "z"), mapOf("a" to "zee", "b" to "sweet")) -> false
  */
 fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
-    for ((z1, z2) in a) {
-        if (z2 == b[z1]) return true
+    for ((key, value) in a) {
+        if (value != b[key]) return false
     }
-    return false
+    return true
 }
 
 /**
@@ -136,8 +136,8 @@ fun containsIn(a: Map<String, String>, b: Map<String, String>): Boolean {
  *     -> a changes to mutableMapOf() aka becomes empty
  */
 fun subtractOf(a: MutableMap<String, String>, b: Map<String, String>): MutableMap<String, String> {
-    for ((z1, z2) in b) {
-        a.remove(z1, z2)
+    for ((key, value) in b) {
+        a.remove(key, value)
     }
     return a
 }
@@ -170,9 +170,9 @@ fun whoAreInBoth(a: List<String>, b: List<String>): List<String> = a.intersect(b
  */
 fun mergePhoneBooks(mapA: Map<String, String>, mapB: Map<String, String>): Map<String, String> {
     val map2 = mutableMapOf<String, String>()
-    for ((z1, z2) in mapB) {
-        if (z1 in mapA && z2 != mapA[z1])
-            map2 += Pair(z1, mapA[z1] + ", " + z2)
+    for ((k, v) in mapB) {
+        if (k in mapA && v != mapA[k])
+            map2 += Pair(k, mapA[k] + ", " + v)
     }
     return mapA + mapB + map2
 }

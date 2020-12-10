@@ -76,11 +76,10 @@ fun digitCountInNumber(n: Int, m: Int): Int =
 fun digitNumber(n: Int): Int {
     var a = 0
     var number = abs(n)
-    if (number == 0) return 1
-    else while (number > 0) {
+    do {
         number /= 10
         a += 1
-    }
+    } while (number > 0)
     return a
 }
 
@@ -176,12 +175,12 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  */
 fun revert(n: Int): Int {
     var number = n
-    var revertnum = 0
+    var revnum = 0
     while (number > 0) {
-        revertnum = revertnum * 10 + (number % 10)
+        revnum = revnum * 10 + (number % 10)
         number /= 10
     }
-    return revertnum
+    return revnum
 }
 
 /**
