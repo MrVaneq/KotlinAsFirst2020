@@ -4,6 +4,7 @@ package lesson9.task2
 
 import lesson9.task1.Matrix
 import lesson9.task1.createMatrix
+import kotlin.math.min
 
 // Все задачи в этом файле требуют наличия реализации интерфейса "Матрица" в Matrix.kt
 
@@ -76,7 +77,15 @@ fun generateSpiral(height: Int, width: Int): Matrix<Int> = TODO()
  *  1  2  2  2  2  1
  *  1  1  1  1  1  1
  */
-fun generateRectangles(height: Int, width: Int): Matrix<Int> = TODO()
+fun generateRectangles(height: Int, width: Int): Matrix<Int> {
+    val matrix = createMatrix(height, width, 1)
+    for (i in 0 until height) {
+        for (j in 0 until width) {
+            matrix[i, j] = min(min(i + 1, height - i), min(j + 1, width - j))
+        }
+    }
+    return matrix
+}
 
 /**
  * Сложная (5 баллов)

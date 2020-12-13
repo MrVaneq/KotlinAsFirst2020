@@ -275,18 +275,18 @@ fun decimalFromString(str: String, base: Int): Int = TODO()
  */
 fun roman(n: Int): String {
     var number = n
-    var romNum = ""
+    val romNum = StringBuilder()
     val listArab = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
     val listRom = listOf("M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I")
     var i = 0
     while (number > 0) {
         while (listArab[i] <= number) {
-            romNum += listRom[i]
+            romNum.append(listRom[i])
             number -= listArab[i]
         }
         i += 1
     }
-    return romNum
+    return romNum.toString()
 }
 
 /**
